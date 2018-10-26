@@ -5,7 +5,11 @@
     "pages/myinfo/myinfo",
     "pages/replenish-over/replenish-over",
     "pages/shopping-over/shopping-over",
-    "pages/open-over/open-over"
+    "pages/open-over/open-over",
+    "pages/add-order/add-order",
+    "pages/add-replenish/add-replenish",
+    "pages/back-order/back-order",
+    "pages/replenish-detail/replenish-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
