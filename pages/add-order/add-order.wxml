@@ -1,0 +1,37 @@
+<view class="order">
+    <view wx:if="{{array!=null&&array.length>0}}">
+        <view class="view-order" wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemX">
+        
+            <view class="left">订单号：{{itemX.orderId}}</view>
+            <view class="right">
+                <view class="text-green" wx:if="{{itemX.isOrder==1}}">支付成功</view>
+                <view class="text-red" wx:elif="{{itemX.isOrder==-1}}">支付失败</view>
+                <view class="text-red" wx:elif="{{itemX.isOrder==0}}">未支付</view>
+            </view>
+            <view class="array-bottom" style="color:#888888">下单时间：{{itemX.orderTime}}</view>
+            
+            <view class="array-bottom" wx:for="{{itemX.orderList}}" wx:for-index="idy" wx:for-item="itemY">
+                <view style="color:#009FCC">{{itemY.goodsName}}</view>
+                <view style="color:#888888">单价:¥{{itemY.unitPrice}}元</view>
+                <view style="color:#888888">数量:{{itemY.count}}</view>
+                <view class="left" style="color:#888888">总价:¥{{itemY.totalPrice}}元</view>
+                <view class="right">
+                    <view class="back-text" wx:if="{{itemY.isBack==1&&itemX.isOrder==1}}">退款成功</view>
+                    <view wx:elif="{{itemY.isBack==2&&itemX.isOrder==1}}" 
+                        data-order-id="{{itemX.orderId}}"
+                        data-id="{{itemY.id}}"
+                        data-name="{{itemY.goodsName}}"
+                        data-count="{{itemY.count}}"
+                        data-unit-price="{{itemY.unitPrice}}"
+                        data-total-price="{{itemY.totalPrice}}"
+                        class="back-button" bindtap="backOrker">申请退款
+                    </view>
+                    <view class="back-text" wx:elif="{{itemY.isBack==0&&itemX.isOrder==1}}">退款中</view>
+                </view>
+            </view>
+
+            <view class="order-total">共<text class="text-red">{{itemX.totalCount}}</text>件商品，合计总额：<text class="text-red">¥{{itemX.sumPrice}}</text>元</view>
+        </view> 
+    </view>
+    <view  class="view-order" style="padding-left:50px;color:#A9A9A9" wx:else>您当前还没有购物信息</view>
+</view>

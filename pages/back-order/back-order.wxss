@@ -1,0 +1,110 @@
+
+.container{
+   flex:1;
+   line-height:1.5;
+   background-color:white;
+   font-size:15px ;
+}
+
+.container-item{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.mod-goods{
+    padding: 10px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.container-layer{
+   height:1.5;
+   background-color:#F5F5F5 ;
+   border: 5px solid #F5F5F5;
+}
+
+.left {
+    width: 75%;
+}
+.right {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.float-button{
+    margin-left: .16rem;
+    margin-right: .16rem;
+    position:fixed; bottom:3px;
+    width:95%
+}
+
+.input-text{
+    border:none;
+    background-color:white;
+}
+
+
+.line {
+    height: 9px;
+    background: #f4f4f4;
+}
+
+.mod-photouploader {
+    padding: 12px 12px 15px;
+    background: #fff;
+    height: 30vw;
+}
+
+.mod-text{
+    margin-bottom: 14px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #3d4245;
+}
+
+.mod-ul {
+    padding-left: 0;
+    vertical-align: top;
+}
+
+.mod-li {
+    float: left;
+    position: relative;
+    margin: 0 3.5vw 0 0;
+}
+
+.mod-li image{
+    display: block;
+    width: 20vw;
+    height: 20vw;
+}
+
+.mod-photouploader-input {
+    width: 20vw;
+    height: 20vw;
+    border: 1px dashed #999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-text{
+    font-size: 10px;
+    line-height: 1.3em;
+    color: #999;
+}
+
+.close-btn{
+    font-size: 0.5rem;
+    position: absolute;
+    top: -2.6vh;
+    right: -3.3vw;
+
+}

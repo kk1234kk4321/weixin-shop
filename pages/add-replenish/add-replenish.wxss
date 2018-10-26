@@ -1,0 +1,33 @@
+.text-green {
+  color:green;
+  font-size:14px ;
+}
+
+.text-red{
+    color:red;
+    font-size:14px ;
+}
+
+.text-grey{
+    color:#888888;
+    font-size:14px ;
+}
+
+
+.replenish{
+   flex:1;
+   padding: 10px;
+   line-height:1.8;
+   background-color:white;
+   font-size:15px ;
+   padding-bottom:15%;
+}
+
+.view-replenish{
+   border-bottom: 8px solid #F5F5F5 ;
+}
+
+.float-button{
+    position:fixed; bottom:5px;
+    width:95%
+}
