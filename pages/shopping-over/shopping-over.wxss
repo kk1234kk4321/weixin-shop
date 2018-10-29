@@ -1,1 +1,47 @@
 /* pages/shopping-over/shopping-over.wxss */
+.container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.main-container{
+    height: 77%;
+}
+
+.container-box {
+    height: 100%;
+    display: block;
+}
+
+.box-margin{
+    margin-left: .16rem;
+    margin-right: .16rem;
+    margin-top:50px;
+}
+
+
+.head-text{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-text{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.box-logo {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
