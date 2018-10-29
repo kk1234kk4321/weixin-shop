@@ -1,6 +1,6 @@
 <view class="container">
   <view class="user">
-    <image class="avatar" src="{{user.avatar}}" background-size="cover"></image>
+    <image class="avatar" src="{{user.avatarUrl}}" background-size="cover"></image>
     <view class="nickname">{{user.nickName}}</view>
   </view>
   <view class = "box-list">
@@ -30,3 +30,4 @@
     </view>
   </view>
 </view>
+<!-- <button open-type='getUserInfo' bindgetuserinfo='onGotUserInfo'>获取用户信息</button> -->

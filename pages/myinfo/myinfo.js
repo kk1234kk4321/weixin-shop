@@ -35,5 +35,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的信息'
     });
-  }
+  },
+  onGotUserInfo: function (e) {
+    this.setData({
+
+    })
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+  },
 })
