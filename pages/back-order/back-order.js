@@ -169,7 +169,7 @@ Page({
     wx.chooseImage({
       count: 3 - path.length,
       success: (res) => {
-        path = path.concat(res.tempFilePaths)
+        path = path.concat(res.tempFilePaths);
         console.log("path====>", path);
         if (path.length > 3) {
           path = path.slice(0, 3);
