@@ -33,7 +33,7 @@ Page({
           app.globalData.userType = resdata.userType;
           break;
         // case 110: //已签约
-        //   app.globalData.openId = resdata.openId;
+        //   app.globalData.openId = resdata.userId;
         //   app.globalData.userType = resdata.userType;
         //   that.setData({
         //     userType: resdata.userType
