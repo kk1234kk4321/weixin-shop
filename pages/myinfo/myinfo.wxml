@@ -1,2 +1,32 @@
-<!--pages/myinfo.wxml-->
-<text>pages/myinfo.wxml</text>
+<view class="container">
+  <view class="user">
+    <image class="avatar" src="{{user.avatar}}" background-size="cover"></image>
+    <view class="nickname">{{user.nickName}}</view>
+  </view>
+  <view class = "box-list">
+    <view class="list-item" >
+      <view class="list-row">
+        <view class="list-title" style="width:30%;padding-left:10px">我的编号</view>
+        <view  style="width:70%">{{openId}}</view>
+      </view>
+    </view>
+  </view>
+  <view class = "box-list">
+    <view class="list-item" bindtap="toOrder">
+      <image class="iconfont icon-wodedingdan icon-title" style="color:#31af08;font-size:2.4rem"></image>
+      <view class="list-row">
+        <view class="list-title">我的订单</view>
+        <view class="iconfont icon-arrow-right" style="font-size:2.4rem;color:#9a9a9a"></view>
+      </view>
+    </view>
+  </view>
+  <view class = "box-list">
+    <view class="list-item">
+       <image class="iconfont icon-tuikuanjilu icon-title" style="color:#f4ea2a;font-size:2.4rem"></image>
+      <view class="list-row">
+      <view class="list-title">退款记录</view>
+      <view class="iconfont icon-arrow-right" style="font-size:2.4rem;color:#9a9a9a"></view>
+    </view>
+    </view>
+  </view>
+</view>

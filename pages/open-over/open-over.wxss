@@ -1,1 +1,90 @@
 /* pages/open-over/open-over.wxss */
+
+
+.container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.main-container{
+    height: 77%;
+}
+
+.container-box {
+    height: 100%;
+    display: block;
+}
+.box-logo {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-margin{
+    margin-left: .16rem;
+    margin-right: .16rem;
+}
+
+
+.main-menu{
+    height: 23%;
+}
+
+.menu-line {
+    height: 8%;
+    background-color: #dedfe0;
+}
+
+.menu-box {
+    display: flex;
+    flex-direction: row;
+    height: 97%;
+}
+
+.box-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-icon {
+    display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+
+}
+
+
+.button_text{
+    font-size: 0.3rem;
+    margin: 0;
+    text-align: center;
+    color: #8e8e8e;
+}
+
+.head-text{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-text{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.box-logo {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

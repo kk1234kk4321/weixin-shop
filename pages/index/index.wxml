@@ -1,13 +1,42 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="main-wrapper">
+    <view class="main-container">
+      <view class="container-box">
+        <view class="box-logo">
+          <image src="/image/main.png" mode="widthFix" style="width:100%;height:100%"/>
+        </view>
+        <view class="box-button" wx:if="{{openType!='palm'}}" >
+          <view class="box-margin">
+            <button style="background-color:#108EE9" type="primary"  bindtap="toWebSocket"> 开门 </button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="main-menu" wx:if="{{openType!='palm'}}">
+      <view class="menu-line"></view>
+      <view class="menu-box">
+        <view class="box-container" bindtap="toMyinfo">
+          <view class="box-icon" >
+            <view class="iconfont icon-xinxi" style="font-size:3.4rem;color:#108ee9;"></view>
+            <view class="button_text">我的信息</view>
+          </view>
+        </view>
+        <view class="box-container" bindtap="toOrder">
+          <view class="box-icon">
+            <view class="iconfont icon-dingdan" style="font-size:3.4rem;color:#31af08"></view>
+            <view class="button_text">我的订单</view>
+          </view>
+        </view>
+        <view class="box-container" bindtap="toReplenish" wx:if="{{userType==1}}">
+          <view class="box-icon">
+            <view class="iconfont icon-buhuo" style="font-size:3.4rem;color:#f4ea2a"></view>
+            <view class="button_text">补货</view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+
 </view>

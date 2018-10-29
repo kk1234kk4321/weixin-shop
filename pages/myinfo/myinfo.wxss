@@ -1,1 +1,60 @@
 /* pages/myinfo.wxss */
+
+
+.user {
+  display: flex;
+  padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+  background-color: #108ee9;
+}
+
+.avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin-right: 40rpx;
+  border-radius: 50%;
+}
+
+.nickname {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 40rpx;
+}
+.box-list{
+    display: flex;
+    padding-left: .2rem;
+    min-height: 1rem;
+    background-color: #fff;
+
+}
+
+.list-item{
+     display: flex;
+     flex: 1;
+     align-items: center;
+     padding-right: .2rem;
+
+}
+
+.icon-title{
+  height: 3rem;
+  width: 3rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.list-row{
+    display: flex;
+    flex: 1;
+    min-height: 1rem;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: solid 1rpx #dedfe0
+}
+.list-title{
+    flex: 1;
+    color: #000;
+    font-size: .84rem;
+}
