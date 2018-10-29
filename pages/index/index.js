@@ -33,7 +33,7 @@ Page({
           app.globalData.userType = resdata.userType;
           break;
         // case 110: //已签约
-        //   app.globalData.openId = resdata.openId;
+        //   app.globalData.openId = resdata.userId;
         //   app.globalData.userType = resdata.userType;
         //   that.setData({
         //     userType: resdata.userType
@@ -83,11 +83,6 @@ Page({
       url: '/pages/myinfo/myinfo',
     });
   },
-  toOrder(e) {
-    wx.navigateTo({
-      url: '/pages/add-order/add-order',
-    });
-  },
   toWebSocket(e){
     let msg = {
       "authcode":app.globalData.authcode,
@@ -107,5 +102,10 @@ Page({
     wx.navigateTo({
       url:'/pages/add-replenish/add-replenish',
     })
+  },
+  toOrder(){
+    wx.navigateTo({
+      url: '/pages/add-order/add-order',
+    });
   }
 })
