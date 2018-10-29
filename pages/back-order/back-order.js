@@ -69,9 +69,11 @@ Page({
       return
     }
     if (!formData.userAlipay) {
-      wx.alert({
+      wx.showModal({
         title: '注意', // alert 框的标题
         content: "请填写接收退款的支付宝账号",
+        showCancel: false, //不显示取消按钮
+        confirmColor: '#108EE9' //确定按钮的文字颜色
       });
       return
     }
@@ -168,6 +170,7 @@ Page({
       count: 3 - path.length,
       success: (res) => {
         path = path.concat(res.apFilePaths);
+        console.log("path====>", path);
         if (path.length > 3) {
           path = path.slice(0, 3);
         }

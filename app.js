@@ -55,13 +55,13 @@ App({
   },
   onShow() {
     wx.onSocketClose((res) => {
-      wx.alert({ content: '服务器通信异常！' });
+      console.log('服务器通信异常！');
     });
 
     wx.onSocketOpen((res) => {
       console.log("连接已经打开", res);
 
-      wx.getAuthCode({
+      wx.login({
         scopes: 'auth_base',
         success: (res) => {
           let msg = {
@@ -87,7 +87,7 @@ App({
     });
 
     wx.onSocketError(function (res) {
-      wx.alert({ content: '服务器连接失败！' + res });
+      console.log('服务器连接失败！' + res);
     });
 
   },

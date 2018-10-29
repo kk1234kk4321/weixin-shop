@@ -41,7 +41,7 @@ var orderData = [
         "id": "11111",
         "goodsName": "乐事薯片（意大利香浓红烩味）",
         "unitPrice": 0.01,
-        "count": 1,
+        "count": 2,
         "totalPrice": 0.01,
         "isBack": 2
       }

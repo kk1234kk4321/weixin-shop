@@ -1,4 +1,4 @@
-<form onSubmit="formSubmit" onReset="formReset">
+<form bindsubmit="formSubmit" bindreset="formReset">
     <input name="orderId" type="text" style="display:none" value="{{data.orderId}}"></input>
     <input name="id" type="text" style="display:none" value="{{data.id}}"></input>
     <input name="name" type="text" style="display:none" value="{{data.name}}"></input>
@@ -11,7 +11,7 @@
             <view class="right">
                 <view style="width:40%">
                 <text class="iconfont icon-jia2"  
-                      style="font-size:0.6rem;color:{{addColor}}" 
+                      style="font-size:1.6rem;color:{{addColor}}" 
                       data-order-id="{{data.orderId}}"
                       data-id="{{data.id}}"
                       data-name="{{data.name}}"
@@ -28,7 +28,7 @@
                     </view>
                 <view style="width:40%">
                 <text class="iconfont icon-minus"  
-                      style="font-size:0.6rem;color:{{minusColor}}" 
+                      style="font-size:1.6rem;color:{{minusColor}}" 
                       data-order-id="{{data.orderId}}"
                       data-id="{{data.id}}"
                       data-name="{{data.name}}"
@@ -51,9 +51,9 @@
         </view>
          <view class="container-layer"></view>
         <view class="mod-goods">
-            <view class="left">支付宝账号</view>
+            <view class="left">微信账号</view>
             <view>
-                <input class="user-alipay" name="userAlipay" type="text" maxlength="30" placeholder="请输入支付宝账号"></input>
+                <input class="user-alipay" name="userWeixin" type="text" maxlength="30" placeholder="请输入微信账号"></input>
             </view>
         </view>
         <view class="container-layer"></view>
@@ -68,7 +68,7 @@
                     </view>
                 </view>
                 <view class="mod-photouploader-input" wx:if="{{path.length<3}}">
-                        <view class="iconfont icon-shangchuanzhaopian" style="font-size:0.7rem;color:#999" onTap="uploadImg"></view>
+                        <view class="iconfont icon-shangchuanzhaopian" style="font-size:1.7rem;color:#999" bindtap="uploadImg"></view>
                         <view class="upload-text">上传凭证</view>
                         <view class="upload-text">(最多3张)</view>
                     </view>
@@ -79,6 +79,6 @@
             <view >退款说明</view>
             <textarea name="backDescr" auto-height placeholder="请输入退款原因" />
         </view>
-        <view class="float-button"><button type="primary" formType="submit">确定</button></view>
+        <view class="float-button"><button type="primary" formType="submit" style="background:#108EE9;color:#FFF;">确定</button></view>
     </view>
 </form>

@@ -38,8 +38,9 @@
 .float-button{
     margin-left: .16rem;
     margin-right: .16rem;
-    position:fixed; bottom:3px;
-    width:95%
+    position:fixed; 
+    bottom:3px;
+    width:95%;
 }
 
 .input-text{
