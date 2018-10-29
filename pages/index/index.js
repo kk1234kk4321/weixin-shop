@@ -83,11 +83,6 @@ Page({
       url: '/pages/myinfo/myinfo',
     });
   },
-  toOrder(e) {
-    wx.navigateTo({
-      url: '/pages/add-order/add-order',
-    });
-  },
   toWebSocket(e){
     let msg = {
       "authcode":app.globalData.authcode,
@@ -107,5 +102,10 @@ Page({
     wx.navigateTo({
       url:'/pages/add-replenish/add-replenish',
     })
+  },
+  toOrder(){
+    wx.navigateTo({
+      url: '/pages/add-order/add-order',
+    });
   }
 })

@@ -103,7 +103,7 @@
 }
 
 .close-btn{
-    font-size: 0.5rem;
+    font-size: 1.3rem;
     position: absolute;
     top: -2.6vh;
     right: -3.3vw;
