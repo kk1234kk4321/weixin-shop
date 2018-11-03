@@ -20,6 +20,7 @@ Page({
     app.getUserInfo().then(user => this.setData({
       user,
     }), );
+ 
   },
 
   toOrder(e){
@@ -27,7 +28,19 @@ Page({
       url:'/pages/add-order/add-order',
     });
   },
-
+copyCode(e){
+ wx.setClipboardData({
+   data: this.data.openId,
+   success(res){
+     wx.getClipboardData({
+       success(res){
+         console.log("openid=", res.data)
+       }
+     })
+   
+   }
+ })
+},
   /**
    * 生命周期函数--监听页面显示
    */
