@@ -28,11 +28,11 @@ Page({
       console.log("收到的数据", res.data);
       var resdata = JSON.parse(res.data);
       switch (resdata.cmd) {
-        case 101:
+        case 2101:
           app.globalData.openId = resdata.openId;
           app.globalData.userType = resdata.userType;
           break;
-        // case 110: //已签约
+        // case 2110: //已签约
         //   app.globalData.openId = resdata.userId;
         //   app.globalData.userType = resdata.userType;
         //   that.setData({
@@ -41,32 +41,32 @@ Page({
         //   console.log("签约openID:", app.globalData.openId);
         //   var openType = app.globalData.openType;
         //   break;
-        case 201:
+        case 2201:
           console.log("购物开门")
           wx.navigateTo({
             url: '/pages/open-over/open-over?status=' + resdata.status + '&cmd=201',
           });
           break;
-        case 301:
+        case 2301:
           console.log("补货开门")
           wx.navigateTo({
             url: '/pages/open-over/open-over?status=' + resdata.status + '&cmd=301',
           });
           break;
-        case 210:
+        case 2210:
           console.log("购物关门")
           wx.navigateTo({
             url: '/pages/shopping-over/shopping-over?status=' + resdata.status + '&cmd=210',
           });
           break;
-        case 310:
+        case 2310:
           console.log("补货关门")
           wx.navigateTo({
             url: '/pages/replenish-over/replenish-over?status=' + resdata.status + '&cmd=310',
           });
           break;
         default:
-          app.globalData.openId = resdata.openId;
+          // app.globalData.openId = resdata.openId;
           app.globalData.userType = resdata.userType;
           that.setData({
             userType: resdata.userType
