@@ -12,14 +12,34 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var that = this;
         if (res.code) {
+          var code = res.code
           wx.request({
-            url: "" + '/weixin/jscode/' + res.code,
+            url: "http://192.168.1.185:8080" + '/weixin/jscode/' + res.code,
             data: {},
             method: 'GET',
             success: function (res) {
               console.log('返回openId')
               console.log(res.data)
-              that.globalData.openId = res.data            
+              that.globalData.openId = res.data  
+              console.log("啦啦啦")   
+
+              let msg = {
+                "authcode": code,
+                "deviceId": that.globalData.deviceId,
+                "boxId": that.globalData.boxId,
+                "cmd": 100 //扫码进入小程序，传递auth_code
+              }
+              that.globalData.authCode = code;
+              console.log("发送cmd100|扫码", msg);
+              wx.sendSocketMessage({
+                data: JSON.stringify(msg),
+                success: (res) => {
+                  console.log("send cmd100 success");
+                },
+                fail: (res) => {
+                  console.log("send cmd100 fail", res);
+                }
+              });
             },
             fail: function (res) {
               console.log("获取OPENID失败，", res)
@@ -53,44 +73,7 @@ App({
       url: 'ws://erp.zhangyuanzhineng.com:8080/erpLife/socket/websocket'
     })
   },
-  onShow() {
-    wx.onSocketClose((res) => {
-      console.log('服务器通信异常！');
-    });
 
-    wx.onSocketOpen((res) => {
-      console.log("连接已经打开", res);
-
-      wx.login({
-        scopes: 'auth_base',
-        success: (res) => {
-          let msg = {
-            "authcode": res.authCode,
-            "deviceId": this.globalData.deviceId,
-            "boxId": this.globalData.boxId,
-            "cmd": 100 //扫码进入小程序，传递auth_code
-          }
-          this.globalData.authCode = res.authCode;
-          console.log("发送cmd100|扫码", msg);
-          wx.sendSocketMessage({
-            data: JSON.stringify(msg),
-            success: (res) => {
-              console.log("send cmd100 success");
-            },
-            fail: (res) => {
-              console.log("send cmd100 fail", res);
-            }
-          });
-        },
-      });
-
-    });
-
-    wx.onSocketError(function (res) {
-      console.log('服务器连接失败！' + res);
-    });
-
-  },
   onHide() {
     console.log('App Hide');
   },
@@ -101,31 +84,29 @@ App({
     boxId: 1,
     openId: "",//"2088902710839148",//"2088112422848101",
     userType: 0,
-    openType: ''//"palm"
+    openType: '',//"palm"
+    
   },
   userInfo: null,
 
   //获取用户信息
   getUserInfo() {
-    return new Promise((resolve, reject) => {
-      if (this.userInfo) resolve(this.userInfo);
-      wx.getUserInfo({
-        success: res => {
-          // 可以将 res 发送给后台解码出 unionId
-          this.userInfo = res.userInfo
-          resolve(this.userInfo);
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+        wx.getUserInfo({
+          success: res => {
+            // 可以将 res 发送给后台解码出 unionId
+            this.globalData.userInfo = res.userInfo
 
-          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-          // 所以此处加入 callback 以防止这种情况
-          if (this.userInfoReadyCallback) {
-            this.userInfoReadyCallback(res)
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            if (this.userInfoReadyCallback) {
+              this.userInfoReadyCallback(res)
+            }
           }
-        }
-      })
-    });
-  },
-
-  globalData: {
-    userInfo: null
+        })
+      }
+    }
   }
 })
