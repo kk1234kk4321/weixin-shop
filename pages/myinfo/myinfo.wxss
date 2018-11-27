@@ -48,7 +48,7 @@
 .list-row{
     display: flex;
     flex: 1;
-    min-height: 1rem;
+    min-height: 3rem;
     align-items: center;
     flex-direction: row;
     border-bottom: solid 1rpx #dedfe0
