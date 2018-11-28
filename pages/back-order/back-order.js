@@ -68,7 +68,8 @@ Page({
       });
       return
     }
-    if (!formData.userAlipay) {
+    console.log("weixin" + formData.weixin);
+    if (!formData.weixin) {
       wx.showModal({
         title: '注意', // alert 框的标题
         content: "请填写接收退款的微信账号",
@@ -90,10 +91,10 @@ Page({
       "count": formData.count,
       "id": formData.id,
       "orderId": formData.orderId,
-      "userAlipay": formData.userAlipay
+      "weixin": formData.weixin
     }
     wx.request({
-      url: 'http://erp.zhangyuanzhineng.com:8080/erpLife/out/userRefund.do',
+      url: app.globalData.erpUrl + 'erpLife/out/wxuserRefund.do',
       data: {
         refundJson: JSON.stringify(jsonobj)
       },
@@ -102,7 +103,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       success: function () {
-        wx.alert({
+        wx.showModal({
           title: '退款',
           content: '提交成功',
           buttonText: '确定',

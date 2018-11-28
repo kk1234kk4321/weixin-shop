@@ -11,6 +11,10 @@
     "pages/back-order/back-order",
     "pages/replenish-detail/replenish-detail"
   ],
+
+  "navigateToMiniProgramAppIdList": [
+    "wxbd687630cd02ce1d"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

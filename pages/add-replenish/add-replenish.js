@@ -3,15 +3,15 @@ var resultList = require("../add-replenish/replenish-data.js");
 Page({
   onLoad() {
     var that = this;
-    console.log('补货列表请求，openId===>', app.globalData.openId)
+    console.log('补货列表请求，userid===>', app.globalData.userid)
     wx.request({
-      url: 'http://erp.zhangyuanzhineng.com:8080/erpLife/out/userSupplyQuery.do',
+      url: app.globalData.erpUrl + 'erpLife/out/wxuserSupplyQuery.do',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        openId: app.globalData.openId,
+        userWxId: app.globalData.userid,
       },
       success: function (res) {
         console.log("res====>", res);
@@ -39,13 +39,16 @@ Page({
   },
   open() {
     let msg = {
-      "authcode": app.globalData.authCode,
+      "authcode": app.globalData.authcode,
       "timestamp": Date.parse(new Date()),
-      "keepTime": "3600",
+      "expiretime": 600,
       "deviceId": app.globalData.deviceId,
       "boxId": app.globalData.boxId,
-      "cmd": 300,//补货开门
+      "cmd": 2300,//补货开门
+      "agreement_no": app.globalData.agreement_no,
+      "userid": app.globalData.userid
     };
+    console.log("发送cmd2300|补货开门", msg);
     wx.sendSocketMessage({
       data: JSON.stringify(msg)
     });

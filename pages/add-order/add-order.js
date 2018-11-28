@@ -2,16 +2,16 @@ const app = getApp();
 var resultList = require("../add-order/order-data.js");
 Page({
   onLoad() {
-    console.log("app.globalData.openId===>", app.globalData.openId);
+    console.log("app.globalData.userid===>", app.globalData.userid);
     var that = this;
     wx.request({
-      url: 'http://erp.zhangyuanzhineng.com:8080/erpLife/out/userSalesQuery.do',
+      url: app.globalData.erpUrl+"erpLife/out/wxuserSalesQuery.do",
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        openId: app.globalData.openId,
+        userWxId: app.globalData.userid,
       },
       success: function (res) {
         console.log("res====>", res);

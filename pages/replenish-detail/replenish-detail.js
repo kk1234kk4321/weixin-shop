@@ -3,15 +3,15 @@ Page({
   data: {},
   onLoad(res) {
     var that = this;
-    console.log('补货单详细列表请求，userid===>', app.globalData.userId)
+    console.log('补货单详细列表请求，userid===>', app.globalData.userid)
     wx.request({
-      url: 'http://erp.zhangyuanzhineng.com:8080/erpLife/out/userSupplyDetailQuery.do',
+      url: app.globalData.erpUrl + 'erpLife/out/wxuserSupplyDetailQuery.do',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        supplyId: res.supplyId,
+        supplyId : res.supplyId,
       },
       success: function (res) {
         console.log("res====>", res);

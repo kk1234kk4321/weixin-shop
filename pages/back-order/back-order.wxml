@@ -53,7 +53,7 @@
         <view class="mod-goods">
             <view class="left">微信账号</view>
             <view>
-                <input class="user-alipay" name="userWeixin" type="text" maxlength="30" placeholder="请输入微信账号"></input>
+                <input class="user-alipay" name="weixin" type="text" maxlength="30" placeholder="请输入微信账号"></input>
             </view>
         </view>
         <view class="container-layer"></view>

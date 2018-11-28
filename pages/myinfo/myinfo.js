@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openId: app.globalData.openId,
-    userType:1
+    userid: app.globalData.userid,
   },
 
   /**
@@ -15,7 +14,7 @@ Page({
    */
   onLoad: function() {
     this.setData({
-      openId: app.globalData.openId
+      userid: app.globalData.userid
     });
     app.getUserInfo().then(user => this.setData({
       user,
@@ -30,11 +29,11 @@ Page({
   },
 copyCode(e){
  wx.setClipboardData({
-   data: this.data.openId,
+   data: this.data.userid,
    success(res){
      wx.getClipboardData({
        success(res){
-         console.log("openid=", res.data)
+         console.log("userid=", res.data)
        }
      })
    

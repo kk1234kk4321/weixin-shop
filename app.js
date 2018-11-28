@@ -9,44 +9,29 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 发送 res.code 到后台换取 userid, sessionKey, unionId
         var that = this;
         if (res.code) {
           var code = res.code
-          wx.request({
-            url: "http://192.168.1.185:8080" + '/weixin/jscode/' + res.code,
-            data: {},
-            method: 'GET',
-            success: function (res) {
-              console.log('返回openId')
-              console.log(res.data)
-              that.globalData.openId = res.data  
-              console.log("啦啦啦")   
-
+        
+          that.globalData.authcode = code;
               let msg = {
                 "authcode": code,
                 "deviceId": that.globalData.deviceId,
                 "boxId": that.globalData.boxId,
-                "cmd": 100 //扫码进入小程序，传递auth_code
+                "cmd": 2100 //扫码进入小程序，传递auth_code
               }
-              that.globalData.authCode = code;
-              console.log("发送cmd100|扫码", msg);
+              that.globalData.authcode = code;
+              console.log("发送cmd2100|扫码", msg);
               wx.sendSocketMessage({
                 data: JSON.stringify(msg),
                 success: (res) => {
-                  console.log("send cmd100 success");
+                  console.log("send cmd2100 success");
                 },
                 fail: (res) => {
-                  console.log("send cmd100 fail", res);
+                  console.log("send cmd2100 fail", res);
                 }
               });
-            },
-            fail: function (res) {
-              console.log("获取OPENID失败，", res)
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
         }
       }
     })
@@ -70,8 +55,56 @@ App({
       //url: 'ws://localhost:8080/WebsocketHome/actions', // 开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名
       //url: 'ws://222.186.101.234:8090/erpLife/socket/websocket'
       //url: 'ws://192.168.1.115:8080/erpLife/socket/websocket'
-      url: 'ws://erp.zhangyuanzhineng.com:8080/erpLife/socket/websocket'
+      url: 'ws://192.168.1.116:8080/erpLife/socket/websocket'
     })
+  },
+
+  onShow(res) {
+    if (res.scene === 1038) { // 场景值1038：从被打开的小程序返回
+      const { appId, extraData } = res.referrerInfo
+      if (appId == 'wxbd687630cd02ce1d') { // appId为wxbd687630cd02ce1d：从签约小程序跳转回来
+        if (typeof extraData == 'undefined') {
+          // TODO
+          // 客户端小程序不确定签约结果，需要向商户侧后台请求确定签约结果
+          return;
+        }
+        if (extraData.return_code == 'SUCCESS') {
+          // TODO
+          // 客户端小程序签约成功，需要向商户侧后台请求确认签约结果
+          var contract_id = extraData.contract_id;
+          this.globalData.agreement_no = contract_id;
+          let msg = {
+            "authcode": this.globalData.authcode,
+            "sign_time": Date.parse(new Date()),
+            "agreement_no": contract_id,
+            "userid": this.globalData.userid,
+            "cmd": 2102,
+          };
+          console.log("发送cmd2102|签约成功",msg);
+          wx.sendSocketMessage({
+            data: JSON.stringify(msg)
+          });
+
+          return;
+        } else {
+          // TODO
+          // 签约失败
+          return;
+        }
+      }
+    }
+
+    wx.onSocketClose((res) => {
+      console.log('服务器通信异常！');
+    });
+
+    wx.onSocketOpen((res) => {
+      console.log("连接已经打开", res);
+    })
+
+    wx.onSocketError(function (res) {
+      console.log('服务器连接失败！' + res);
+    });
   },
 
   onHide() {
@@ -79,13 +112,14 @@ App({
   },
 
   globalData: {
-    authCode: "",
-    deviceId: "100200100002",//99872212,
+    authcode: "",
+    deviceId: "100200100001",//99872212,
     boxId: 1,
-    openId: "",//"2088902710839148",//"2088112422848101",
+    userid: "",//"2088902710839148",//"2088112422848101",
     userType: 0,
-    openType: '',//"palm"
-    
+    openType: '',//"palm",
+    agreement_no:'',
+    erpUrl:"http://192.168.1.116:8080/"  
   },
   userInfo: null,
 
