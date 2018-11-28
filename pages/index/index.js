@@ -6,18 +6,20 @@ Page({
   data: {
     userid: app.globalData.userid,
     openType: app.globalData.openType,
-    signstr:'',
-    contract_code:"",
-    request_serial:"",
-    timestamp:""
+    signstr: '',
+    contract_code: "",
+    request_serial: "",
+    timestamp: "",
+    loadover:false
   },
+  loadover: false,
   changeData() {
     this.setData({
       openType: app.globalData.openType
     })
   },
 
-  dd: function (signstr) {
+  dd: function(signstr) {
     this.signstr = signstr;
   },
   //事件处理函数
@@ -33,6 +35,9 @@ Page({
       var resdata = JSON.parse(res.data);
       switch (resdata.cmd) {
         case 2101:
+          this.setData({
+            loadover: true
+          })
           app.globalData.userid = resdata.userid;
           app.globalData.userType = resdata.userType;
           this.data.contract_code = resdata.contract_code;
@@ -42,6 +47,9 @@ Page({
           console.log(resdata);
           break;
         case 2110: //已签约
+          this.setData({
+            loadover: true
+          })
           app.globalData.userid = resdata.userid;
           app.globalData.userType = resdata.userType;
           app.globalData.agreement_no = resdata.agreement_no;
@@ -85,14 +93,14 @@ Page({
     })
 
   },
-  toMyinfo(e){
+  toMyinfo(e) {
     wx.navigateTo({
       url: '/pages/myinfo/myinfo',
     });
   },
-  toWebSocket(e){
+  toWebSocket(e) {
     console.log("agreement_no:" + app.globalData.agreement_no);
-    if (app.globalData.agreement_no==""){
+    if (app.globalData.agreement_no == "") {
       var contract_code = this.data.contract_code;
       var request_serial = this.data.request_serial;
       var timestamp = this.data.timestamp;
@@ -119,7 +127,7 @@ Page({
           // 未成功跳转到签约小程序 
         }
       })
-    }else{
+    } else {
       let msg = {
         "authcode": app.globalData.authcode,
         "timestamp": Date.parse(new Date()),
@@ -139,12 +147,12 @@ Page({
   onLoad: function() {
     this.changeData();
   },
-  toReplenish(e){
+  toReplenish(e) {
     wx.navigateTo({
-      url:'/pages/add-replenish/add-replenish',
+      url: '/pages/add-replenish/add-replenish',
     })
   },
-  toOrder(){
+  toOrder() {
     wx.navigateTo({
       url: '/pages/add-order/add-order',
     });

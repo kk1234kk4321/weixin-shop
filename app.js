@@ -6,36 +6,6 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 userid, sessionKey, unionId
-        var that = this;
-        if (res.code) {
-          var code = res.code
-        
-          that.globalData.authcode = code;
-              let msg = {
-                "authcode": code,
-                "deviceId": that.globalData.deviceId,
-                "boxId": that.globalData.boxId,
-                "cmd": 2100 //扫码进入小程序，传递auth_code
-              }
-              that.globalData.authcode = code;
-              console.log("发送cmd2100|扫码", msg);
-              wx.sendSocketMessage({
-                data: JSON.stringify(msg),
-                success: (res) => {
-                  console.log("send cmd2100 success");
-                },
-                fail: (res) => {
-                  console.log("send cmd2100 fail", res);
-                }
-              });
-        }
-      }
-    })
-
     //console.log('启动参数：'+JSON.stringify(options.query));
     console.log('启动参数:App Launch', options);
     if (options.query) {
@@ -55,7 +25,7 @@ App({
       //url: 'ws://localhost:8080/WebsocketHome/actions', // 开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名
       //url: 'ws://222.186.101.234:8090/erpLife/socket/websocket'
       //url: 'ws://192.168.1.115:8080/erpLife/socket/websocket'
-      url: 'ws://192.168.1.116:8080/erpLife/socket/websocket'
+      url: 'ws://117.89.14.55:8088/erpLife/socket/websocket'
     })
   },
 
@@ -100,6 +70,33 @@ App({
 
     wx.onSocketOpen((res) => {
       console.log("连接已经打开", res);
+      // 登录
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 userid, sessionKey, unionId
+          if (res.code) {
+            var code = res.code
+            this.globalData.authcode = code;
+            let msg = {
+              "authcode": code,
+              "deviceId": this.globalData.deviceId,
+              "boxId": this.globalData.boxId,
+              "cmd": 2100 //扫码进入小程序，传递auth_code
+            }
+            this.globalData.authcode = code;
+            console.log("发送cmd2100|扫码", msg);
+            wx.sendSocketMessage({
+              data: JSON.stringify(msg),
+              success: (res) => {
+                console.log("send cmd2100 success");
+              },
+              fail: (res) => {
+                console.log("send cmd2100 fail", res);
+              }
+            });
+          }
+        }
+      })
     })
 
     wx.onSocketError(function (res) {
@@ -119,7 +116,7 @@ App({
     userType: 0,
     openType: '',//"palm",
     agreement_no:'',
-    erpUrl:"http://192.168.1.116:8080/"  
+    erpUrl:"http://117.89.14.55:8088/"
   },
   userInfo: null,
 

@@ -6,9 +6,9 @@
         <view class="box-logo">
           <image src="/image/main.png" mode="widthFix" style="width:100%;height:100%"/>
         </view>
-        <view class="box-button"  >
-          <view class="box-margin">
-            <button style="background-color:#108EE9" type="primary"  bindtap="toWebSocket"> 开门 </button>
+        <view class="box-button"  wx:if="{{loadover}}" >
+          <view class="box-margin" >
+            <button style="background-color:#108EE9" type="primary"  bindtap="toWebSocket"> 开门</button>
           </view>
         </view>
       </view>
