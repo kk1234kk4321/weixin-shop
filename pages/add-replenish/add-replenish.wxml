@@ -11,5 +11,5 @@
     </view>
   </view>
   <view class="view-replenish" style="padding-left:50px;color:#A9A9A9" wx:else>您当前没有补货信息</view>
-  <view class="float-button"><button style="background-color:#108EE9" type="primary" bindtap="open">补货开门</button></view>
+  <view class="float-button" ><button style="background-color:#108EE9" type="primary" bindtap="open">补货开门</button><button style="background-color:#108EE9;margin-top:12px" type="primary" bindtap="toBack">返回首页</button></view>
   </view>

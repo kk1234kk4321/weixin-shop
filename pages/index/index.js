@@ -6,16 +6,16 @@ Page({
   data: {
     userid: app.globalData.userid,
     openType: app.globalData.openType,
+    loadover: app.globalData.loadover,
     signstr: '',
     contract_code: "",
     request_serial: "",
-    timestamp: "",
-    loadover:false
+    timestamp: ""
   },
-  loadover: false,
   changeData() {
     this.setData({
-      openType: app.globalData.openType
+      openType: app.globalData.openType,
+      loadover:app.globalData.loadover
     })
   },
 
@@ -38,6 +38,7 @@ Page({
           this.setData({
             loadover: true
           })
+          app.globalData.loadover=true;
           app.globalData.userid = resdata.userid;
           app.globalData.userType = resdata.userType;
           this.data.contract_code = resdata.contract_code;
@@ -48,8 +49,11 @@ Page({
           break;
         case 2110: //已签约
           this.setData({
+
             loadover: true
           })
+          app.globalData.loadover = true;
+          console.log("loadover===>", app.globalData.loadover)
           app.globalData.userid = resdata.userid;
           app.globalData.userType = resdata.userType;
           app.globalData.agreement_no = resdata.agreement_no;
@@ -144,8 +148,10 @@ Page({
       });
     }
   },
-  onLoad: function() {
+  onLoad: function(res) {
     this.changeData();
+   
+    console.log("loadover===>", app.globalData.loadover)
   },
   toReplenish(e) {
     wx.navigateTo({

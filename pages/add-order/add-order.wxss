@@ -37,7 +37,7 @@
     width: 25%;
      display: inline-block;
     }
-    
+
 .isBack{
     color:black;
     text-align:right;
@@ -56,4 +56,9 @@
     color:black;
     font-size:12px ;
     margin-left: 20%;
+}
+
+.float-button{
+    position:fixed; bottom:5px;
+    width:95%
 }

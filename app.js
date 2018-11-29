@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function (options) {
+  onLaunch: function(options) {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -31,7 +31,10 @@ App({
 
   onShow(res) {
     if (res.scene === 1038) { // 场景值1038：从被打开的小程序返回
-      const { appId, extraData } = res.referrerInfo
+      const {
+        appId,
+        extraData
+      } = res.referrerInfo
       if (appId == 'wxbd687630cd02ce1d') { // appId为wxbd687630cd02ce1d：从签约小程序跳转回来
         if (typeof extraData == 'undefined') {
           // TODO
@@ -50,7 +53,7 @@ App({
             "userid": this.globalData.userid,
             "cmd": 2102,
           };
-          console.log("发送cmd2102|签约成功",msg);
+          console.log("发送cmd2102|签约成功", msg);
           wx.sendSocketMessage({
             data: JSON.stringify(msg)
           });
@@ -99,7 +102,7 @@ App({
       })
     })
 
-    wx.onSocketError(function (res) {
+    wx.onSocketError(function(res) {
       console.log('服务器连接失败！' + res);
     });
   },
@@ -110,13 +113,14 @@ App({
 
   globalData: {
     authcode: "",
-    deviceId: "100200100001",//99872212,
+    deviceId: "100200100001", //99872212,
     boxId: 1,
-    userid: "",//"2088902710839148",//"2088112422848101",
+    userid: "", //"2088902710839148",//"2088112422848101",
     userType: 0,
-    openType: '',//"palm",
-    agreement_no:'',
-    erpUrl:"http://117.89.14.55:8088/"
+    openType: '', //"palm",
+    agreement_no: '',
+    erpUrl: "http://117.89.14.55:8088/",
+    loadover:false,
   },
   userInfo: null,
 
@@ -128,13 +132,19 @@ App({
         wx.getUserInfo({
           success: res => {
             // 可以将 res 发送给后台解码出 unionId
-            this.globalData.userInfo = res.userInfo
-
+            var userInfo = res.userInfo
+            var nickName = userInfo.nickName
+            var avatarUrl = userInfo.avatarUrl
+            var gender = userInfo.gender //性别 0：未知、1：男、2：女
+            var province = userInfo.province
+            var city = userInfo.city
+            var country = userInfo.country
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
             if (this.userInfoReadyCallback) {
               this.userInfoReadyCallback(res)
             }
+            wx.alert("user", res.userInfo)
           }
         })
       }

@@ -53,6 +53,11 @@ Page({
       data: JSON.stringify(msg)
     });
   },
+  toBack(e){
+    wx.reLaunch({
+      url:'/pages/index/index'
+    })
+  },
   detail(e) {
     console.log("准备进入补货订单明细页面====", e);
     var id = e.currentTarget.dataset.replenishId;

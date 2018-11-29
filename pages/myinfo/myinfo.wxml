@@ -1,13 +1,18 @@
 <view class="container">
-  <view class="user">
-    <image class="avatar" src="{{user.avatarUrl}}" background-size="cover"></image>
-    <view class="nickname">{{user.nickName}}</view>
+  <view class="user"><view class='headView'>
+    <open-data  class='icon' mode='aspectFit' type="userAvatarUrl"></open-data>
+    </view>
+<open-data class='nickView' type="userNickName"></open-data>
   </view>
   <view class = "box-list">
     <view class="list-item" >
       <view class="list-row">
         <view class="list-title" style="width:39%;padding-left:10px">我的编号</view>
-        <view  style="width:61%">{{userid}}</view>
+      </view></view></view>
+      <view class = "box-list">
+      <view class="list-item" >
+      <view class="list-row" >
+        <view  style="width:83%;padding-left:10px">{{userid}}</view>
         <view style=' background: #BEE6F2;color: #00A8D5;' class="pro_ok" bindtap='copyCode'>复制</view>
       </view>
     </view>
@@ -30,5 +35,6 @@
     </view>
     </view>
   </view>
+   <view class="float-button"><button style="background-color:#108EE9;" type="primary" bindtap="toBack">返回首页</button></view>
 </view>
 <!-- <button open-type='getUserInfo' bindgetuserinfo='onGotUserInfo'>获取用户信息</button> -->

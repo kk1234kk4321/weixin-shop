@@ -59,13 +59,40 @@
     font-size: .84rem;
 }
 .pro_ok {
-  width: 10%;
+  width: 0.1%;
   height: 1.5rem;
   font-size: .84rem;
   border: 0.2rpx solid #ddd;
   border-radius: 0.3rem;
   display:flex;
   flex: 1;
+  padding-right:0.1rpx;
   align-items: center;
   justify-content: center;
+}
+.float-button{
+    position:fixed; 
+    bottom:5px;
+    width:95%;
+   margin:0 2.5%;
+}
+.headView .icon {
+    height: 150rpx;
+    width: 150rpx;
+    border-radius: 50%;
+    overflow:hidden;
+}
+.headView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150rpx;
+    width: 200rpx;
+    position: relative;
+}
+.nickView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }

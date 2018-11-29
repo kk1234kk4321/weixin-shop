@@ -16,10 +16,10 @@ Page({
     this.setData({
       userid: app.globalData.userid
     });
-    app.getUserInfo().then(user => this.setData({
-      user,
-    }), );
- 
+    // app.getUserInfo().then(user => this.setData({
+    //   user,
+    // }), );
+
   },
 
   toOrder(e){
@@ -36,9 +36,14 @@ copyCode(e){
          console.log("userid=", res.data)
        }
      })
-   
+
    }
  })
+},
+toBack(e){
+  wx.reLaunch({
+    url:'/pages/index/index'
+  });
 },
   /**
    * 生命周期函数--监听页面显示

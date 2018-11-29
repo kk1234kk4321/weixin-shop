@@ -47,5 +47,10 @@ Page({
         '&totalPrice=' + data.totalPrice + '&currCount=' + data.count +
         '&currPrice=' + data.totalPrice + '&orderId=' + data.orderId,
     });
+  },
+  toBack(e) {
+    wx.reLaunch({
+      url:"/pages/index/index"
+    });
   }
 });
