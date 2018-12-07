@@ -150,7 +150,6 @@ Page({
   },
   onLoad: function(res) {
     this.changeData();
-   
     console.log("loadover===>", app.globalData.loadover)
   },
   toReplenish(e) {

@@ -1,31 +1,32 @@
 //app.js
 App({
-  onLaunch: function(options) {
+  onLaunch: function (option) {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    //console.log('启动参数：'+JSON.stringify(options.query));
-    console.log('启动参数:App Launch', options);
-    if (options.query) {
-      if (options.query.deviceId) {
-        this.globalData.deviceId = options.query.deviceId;
-      }
-      if (options.query.openType) {
-        this.globalData.openType = options.query.openType;
-      }
-      console.log("参数deviceId", this.globalData.deviceId);
-      console.log("参数openType", this.globalData.openType);
-    }
     console.log('getSystemInfoSync', wx.getSystemInfoSync());
     console.log('SDKVersion', wx.SDKVersion);
+
+    if (option.query && option.query.q) {
+      var link = decodeURIComponent(option.query.q);
+      console.log("参数link", link);
+      if (link) {
+        var regex = /\/deviceId\/(\S*)\/openType/;
+        var result;
+        if ((result = regex.exec(link)) != null) {
+          this.globalData.deviceId = result[1];
+        }
+      }
+    }
+    console.log("参数deviceId", this.globalData.deviceId);
+
 
     wx.connectSocket({
       //url: 'ws://localhost:8080/WebsocketHome/actions', // 开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名
       //url: 'ws://222.186.101.234:8090/erpLife/socket/websocket'
       //url: 'ws://192.168.1.115:8080/erpLife/socket/websocket'
-      url: 'ws://117.89.14.55:8088/erpLife/socket/websocket'
+      url: 'ws://117.89.132.47:8088/erpLife/socket/websocket'
     })
   },
 
@@ -66,6 +67,8 @@ App({
         }
       }
     }
+
+
 
     wx.onSocketClose((res) => {
       console.log('服务器通信异常！');
@@ -113,14 +116,14 @@ App({
 
   globalData: {
     authcode: "",
-    deviceId: "100200100001", //99872212,
+    deviceId: "",//"100200100001", //99872212,
     boxId: 1,
     userid: "", //"2088902710839148",//"2088112422848101",
     userType: 0,
     openType: '', //"palm",
     agreement_no: '',
-    erpUrl: "http://117.89.14.55:8088/",
-    loadover:false,
+    erpUrl: "https://erp.zhangyuanzhineng.com",
+    loadover: false,
   },
   userInfo: null,
 
