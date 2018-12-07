@@ -62,7 +62,7 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.value);
 
     if (formData.count == 0) {
-      wx.alert({
+      wx.showModal({
         title: '注意', // alert 框的标题
         content: "退款商品数不能为0",
       });
@@ -116,7 +116,7 @@ Page({
       },
       fail: function (res) {
         //console.log('失败原因：',res.data);
-        wx.alert({
+        wx.showModal({
           content: '操作失败，请重新操作！'
         });
       }

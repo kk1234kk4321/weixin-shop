@@ -22,11 +22,11 @@ Page({
       fail: function (res) {
         console.log("fail reson:", res);
         if (res.error == 12 || res.error == 13) {
-          wx.alert({
+          wx.showModal({
             content: '网络出错或超时，请稍候重试！',
           });
         } else {
-          wx.alert({
+          wx.showModal({
             content: '操作失败，请重新操作！',
           });
         }
